@@ -54,23 +54,23 @@ public class LinkedList<T extends Comparable> {
         }
     }
     public void deleteTheFirst(){
-        if (head != null)
-            head = head.next;
+        if(head!=null)
+            head=head.next;
     }
     public void delete(T val){
-        if(head == null){
+        if(head==null)
             return;
-        }
-        if (head.value.compareTo(val) ==0)
-            head = head.next;
-        else {
-            Node<T> previous=head , iterator = head;
-            while(iterator != null && iterator.next.value.compareTo(val) !=0){
+        if(head.value.compareTo(val)==0)
+            head=head.next;
+        else{
+            Node<T> previous=head, iterator=head;
+            while(iterator!=null && iterator.value.compareTo(val)!=0)   {
                 previous=iterator;
-                iterator = iterator.next;
+                iterator=iterator.next;
             }
-            if (iterator !=null)
-                previous.next = iterator.next;
+            if(iterator!=null)
+                previous.next=iterator.next;
+
         }
     }
     public void recursiveAddToEnd(T val){

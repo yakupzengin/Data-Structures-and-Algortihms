@@ -9,5 +9,6 @@ public class Test {
         circularQueue.deQueue();
         circularQueue.display();
         System.out.println("*****");
+
     }
 }

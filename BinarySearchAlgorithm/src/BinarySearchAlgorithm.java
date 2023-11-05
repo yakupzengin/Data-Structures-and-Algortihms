@@ -1,7 +1,7 @@
 public class BinarySearchAlgorithm {
 
     // Binary search algorithm to find a specific number in a sorted array.
-    // Returns the index of the number if found, otherwise returns -1.
+    // Returns the index of the number if found, otherwise returns -1
     public static int binarySearch(int[] numbers, int numberToFind) {
         int low = 0;
         int high = numbers.length - 1;

@@ -1,6 +1,4 @@
-import java.util.Arrays;
-
-public class Main {
+public class BubleSort {
 
     // This method implements the bubble sort algorithm to sort the given array of integers.
     public static void bubbleSort(int[] values) {

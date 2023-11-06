@@ -30,7 +30,7 @@ public class LinkedList<T extends Comparable> {
         }
         return count;
     }
-    public boolean searh(T val){
+    public boolean search(T val){
         Node<T> iterator = head;
         boolean isFound = false;
         while(iterator!=null ){
@@ -42,7 +42,76 @@ public class LinkedList<T extends Comparable> {
         }
         return isFound;
     }
+    public boolean recursiveSearch(T val){
+        return recursiveSearch(head,val);
+    }
+    public boolean recursiveSearch(Node<T> tempHead , T val){
+        if (tempHead ==null )
+            return false;
 
+        if (tempHead.value.compareTo(val) == 0){
+            return true;
+        }
+        return recursiveSearch(tempHead.next,val);
+    }
+
+    //-write a bubble sort algorithm that will sort the linked list
+    public void bubbleSort() {
+        // Check if the list is empty or contains only one node
+        if (head == null || head.next == null) {
+            return;
+        }
+
+        boolean swapped;
+        Node<T> last = null;
+
+        do {
+            swapped = false;
+            Node<T> current = head;
+            Node<T> previous = null;
+            Node<T> nextNode;
+
+            while (current.next != last) {
+                if (current.value.compareTo(current.next.value) > 0) {
+                    // Swap nodes
+                    nextNode = current.next;
+                    if (previous != null) {
+                        previous.next = nextNode;
+                    } else {
+                        head = nextNode;
+                    }
+
+                    current.next = nextNode.next;
+                    nextNode.next = current;
+
+                    previous = nextNode;
+                    swapped = true;
+                } else {
+                    previous = current;
+                    current = current.next;
+                }
+            }
+            last = current;
+        } while (swapped);
+    }
+
+
+    //-swap first node and the last one. Swap nodes not values.
+    public void swapFirstAndLastNodes(){
+
+        if (head != null && head.next !=null){
+            Node<T> lastBefore =head , last = head;
+
+            while(last.next != null){
+                lastBefore = last;
+                last = last.next;
+            }
+            last.next = head.next;
+            lastBefore.next = head;
+            head.next = null;
+            head = last;
+        }
+    }
     public T findMin() {
         if (head==null)
             return null;
@@ -74,6 +143,7 @@ public class LinkedList<T extends Comparable> {
             iterator.next = newNode;
         }
     }
+
     //  2 5 1 9 8 2 4 21 1 2 8 2 13 5 2
     public void deleteAll(T val){
         Node<T> previous = head , iterator =head;

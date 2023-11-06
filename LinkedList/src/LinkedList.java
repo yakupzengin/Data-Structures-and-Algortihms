@@ -21,6 +21,27 @@ public class LinkedList<T extends Comparable> {
         iterator.next=newNode;
 
     }
+    public int count(){
+        int count = 0;
+        Node<T> iterator = head;
+        while (iterator != null){
+            count++;
+            iterator = iterator.next;
+        }
+        return count;
+    }
+    public boolean searh(T val){
+        Node<T> iterator = head;
+        boolean isFound = false;
+        while(iterator!=null ){
+            if (iterator.value == val){
+                isFound=true;
+                return isFound;
+            }
+            iterator = iterator.next;
+        }
+        return isFound;
+    }
 
     public T findMin() {
         if (head==null)
@@ -51,6 +72,20 @@ public class LinkedList<T extends Comparable> {
             }
             newNode.next = iterator.next;
             iterator.next = newNode;
+        }
+    }
+    //  2 5 1 9 8 2 4 21 1 2 8 2 13 5 2
+    public void deleteAll(T val){
+        Node<T> previous = head , iterator =head;
+
+        while(iterator != null ){
+            if (head.value == val)
+                head = head.next;
+            if (iterator.value == val){
+                previous.next = iterator.next;
+            }
+            previous = iterator;
+            iterator = iterator.next;
         }
     }
     public void deleteTheFirst(){

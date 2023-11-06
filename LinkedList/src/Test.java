@@ -22,7 +22,7 @@ public class Test {
         linkedList.sortedInsert(10);
         linkedList.display();
         System.out.println("**");
-        System.out.println(linkedList.searh(5));
+        System.out.println(linkedList.search(5));
         System.out.println("**");
         System.out.println(linkedList.count());
         System.out.println("**");
@@ -38,7 +38,20 @@ public class Test {
         System.out.println("**");
         linkedList.deleteAll(1);
         linkedList.display();
-
-
+        System.out.println("**");
+        System.out.println(linkedList.recursiveSearch(5));
+        linkedList.display();
+        System.out.println("**");
+        linkedList.swapFirstAndLastNodes();
+        linkedList.display();
+        System.out.println("**");
+        linkedList.insertToFront(100);
+        linkedList.insertToFront(29);
+        linkedList.insertToFront(9);
+        linkedList.insertToFront(0);
+        linkedList.insertToFront(25);
+        linkedList.insertToFront(-25);
+        linkedList.bubbleSort();
+        linkedList.display();
     }
 }

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BinarySearchAlgorithm/BinarySearchAlgorithm.iml" filepath="$PROJECT_DIR$/BinarySearchAlgorithm/BinarySearchAlgorithm.iml" />
       <module fileurl="file://$PROJECT_DIR$/BubbleSort/BubbleSort.iml" filepath="$PROJECT_DIR$/BubbleSort/BubbleSort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LinkedList/CircularLinkedList/CircularLinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/CircularLinkedList/CircularLinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/Queue/CircularQueue/CircularQueue.iml" filepath="$PROJECT_DIR$/Queue/CircularQueue/CircularQueue.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Data-Structures-And-Algorithms.iml" filepath="$PROJECT_DIR$/.idea/Data-Structures-And-Algorithms.iml" />
       <module fileurl="file://$PROJECT_DIR$/LinkedList/LinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/LinkedList.iml" />

@@ -50,4 +50,13 @@ public class DoublyLinkedList<T extends  Comparable> {
           }
       }
   }
+
+  public void display(){
+      DNode<T> iterator = head;
+      while(iterator != null ){
+          System.out.print(iterator.value + " ");
+          iterator = iterator.next;
+      }
+      System.out.println();
+  }
 }

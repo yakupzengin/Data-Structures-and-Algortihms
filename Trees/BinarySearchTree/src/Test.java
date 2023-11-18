@@ -12,5 +12,9 @@ public class Test {
 
         // Perform in-order traversal and print the nodes
         binarySearchTree.inOrder();
+
+        // Search for a value in the binary search tree and print the result
+        System.out.println(binarySearchTree.search(16));
+        System.out.println(binarySearchTree.search(101));
     }
 }

@@ -6,7 +6,7 @@ public class Test {
         myStack.push("Data");
         myStack.push("Structures");
         myStack.push("Algorithms");
-
+        myStack.display();
         System.out.println(myStack.peek()); // Display the top element without removing it
 
         myStack.pop(); // Remove the top element

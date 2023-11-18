@@ -51,4 +51,25 @@ public class BinarySearchTree<T extends Comparable> {
             inOrder(root.right);
         }
     }
+
+    // Search for a value in the binary search tree
+    public boolean search(T val){
+        return search(root,val);
+    }
+
+    // Helper method for searching a value in the binary search tree
+    public boolean search(TNode<T> root, T val){
+        if (root == null){
+            return false;
+        }
+        if (root.value.compareTo(val) ==0){
+            return true;
+        } else if (root.value.compareTo(val) <0) {
+            return search(root.right,val);
+        } else{
+            return search(root.left,val);
+        }
+    }
+
+
 }

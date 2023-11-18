@@ -28,6 +28,15 @@ public class Stack {
         }
         this.length++;
     }
+    public void display(){
+        Node iterator = top;
+        while (iterator !=null){
+            System.out.println(iterator.value +" ");
+            iterator = iterator.next;
+        }
+        System.out.println();
+
+    }
 
     public void pop() {
         if (length > 0) {

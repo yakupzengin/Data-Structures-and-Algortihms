@@ -85,6 +85,21 @@ public class BinarySearchTree<T extends Comparable> {
         else
             return tempRoot;
     }
+    public TNode<T> findParent(T val) {
+        if (search(val) == false || root.value.compareTo(val) == 0)
+            return null;
+        else {
+            TNode<T> parent = root, iterator = root;
+            while (iterator.value.compareTo(val) != 0) {
+                parent = iterator;
+                if (val.compareTo(iterator.value) == -1)
+                    iterator = iterator.left;
+                else
+                    iterator = iterator.right;
+            }
+            return parent;
+        }
+    }
 
 
 }

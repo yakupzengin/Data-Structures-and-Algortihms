@@ -70,6 +70,21 @@ public class BinarySearchTree<T extends Comparable> {
             return search(root.left,val);
         }
     }
+    public TNode<T> findNode(T val ){
+        return findNode(root,val);
+    }
+    public TNode<T> findNode(TNode<T> tempRoot, T val){
+        if (tempRoot == null){
+            return null;
+        }
+        else if(val.compareTo(tempRoot.value) == -1){
+            return findNode(tempRoot.left,val);
+        }else if(val.compareTo(tempRoot.value) == 1){
+            return findNode(tempRoot.right,val);
+        }
+        else
+            return tempRoot;
+    }
 
 
 }

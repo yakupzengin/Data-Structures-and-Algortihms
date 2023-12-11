@@ -45,13 +45,18 @@ public class Test {
         linkedList.swapFirstAndLastNodes();
         linkedList.display();
         System.out.println("**");
-        linkedList.insertToFront(100);
-        linkedList.insertToFront(29);
+        linkedList.insertToFront(10);
+        linkedList.insertToFront(2);
         linkedList.insertToFront(9);
         linkedList.insertToFront(0);
         linkedList.insertToFront(25);
         linkedList.insertToFront(-25);
         linkedList.bubbleSort();
         linkedList.display();
+        System.out.println("***");
+        linkedList.recursiveDeleteAll(5);
+        linkedList.display();
+        System.out.println("********");
+        System.out.println(linkedList.findMax());
     }
 }

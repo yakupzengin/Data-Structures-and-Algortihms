@@ -30,7 +30,7 @@ public class StackOperations {
         while (!stk.isEmpty()) {
             int topValue = stk.pop();
 
-            if (topValue != val) {
+            if (topValue  != val) {
                 tempStack.push(topValue);
             }
         }

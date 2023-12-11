@@ -42,7 +42,7 @@ public class LinkedList<T extends Comparable> {
         Node<T> iterator = head;
         boolean isFound = false;
         while(iterator != null ){
-            if (iterator.value == val){
+            if (iterator.value.compareTo(val)==0){
                 isFound = true;
                 return isFound;
             }
@@ -69,43 +69,38 @@ public class LinkedList<T extends Comparable> {
 
     // Performs a bubble sort on the linked list
     public void bubbleSort() {
-        // Check if the list is empty or contains only one node
-        if (head == null || head.next == null) {
+        int n = count();
+        if (n <= 1) {
+            // No need to sort if the list has 0 or 1 element
             return;
         }
 
-        boolean swapped;
-        Node<T> last = null;
-
-        do {
-            swapped = false;
+        for (int i = 0; i < n - 1; i++) {
             Node<T> current = head;
-            Node<T> previous = null;
-            Node<T> nextNode;
+            Node<T> nextNode = head.next;
 
-            while (current.next != last) {
-                if (current.value.compareTo(current.next.value) > 0) {
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (current.value.compareTo(nextNode.value) > 0) {
                     // Swap nodes
-                    nextNode = current.next;
-                    if (previous != null) {
-                        previous.next = nextNode;
-                    } else {
+                    if (current == head) {
                         head = nextNode;
+                    } else {
+                        Node<T> prev = head;
+                        while (prev.next != current) {
+                            prev = prev.next;
+                        }
+                        prev.next = nextNode;
                     }
-
                     current.next = nextNode.next;
                     nextNode.next = current;
-
-                    previous = nextNode;
-                    swapped = true;
                 } else {
-                    previous = current;
                     current = current.next;
                 }
+                nextNode = current.next;
             }
-            last = current;
-        } while (swapped);
+        }
     }
+
 
     // Swaps the first node and the last node. Swap nodes, not values.
     public void swapFirstAndLastNodes(){
@@ -122,7 +117,18 @@ public class LinkedList<T extends Comparable> {
             head = last;
         }
     }
+    public T findMaxRecursive2(){
+        return findMaxRecursive2(head,head.value);
+    }
+    private T findMaxRecursive2(Node<T> current,T currentMax ){
+        if (current==null){
+            return currentMax;
+        }
 
+        currentMax = (current.value.compareTo(currentMax) > 0) ? current.value : currentMax;
+
+        return findMaxRecursive2(current.next,currentMax);
+    }
     // Finds the minimum value in the list
     public T findMin() {
         if (head == null)
@@ -140,7 +146,7 @@ public class LinkedList<T extends Comparable> {
 
     // Inserts a node with the given value in a sorted manner
     public void sortedInsert(T val) {
-        Node<T> newNode = createNode(val);
+        Node<T> newNode = new Node<>(val);
 
         if (head == null){
             head = newNode;
@@ -209,6 +215,44 @@ public class LinkedList<T extends Comparable> {
         }
         return tempHead;
     }
+    public void recursiveDeleteAll(T val) {
+        head = recursiveDeleteAll(head, val);
+    }
+
+    private Node<T> recursiveDeleteAll(Node<T> current, T val) {
+        if (current == null) {
+            return null;
+        }
+        if (current.value.compareTo(val) == 0) {
+            return recursiveDeleteAll(current.next, val);
+        } else {
+            current.next = recursiveDeleteAll(current.next, val);
+            return current;
+        }
+    }
+    // Finds the maximum value in the list recursively
+    public T findMax() {
+        return findMaxRecursive(head);
+    }
+
+    // Helper function for recursive findMax
+    private T findMaxRecursive(Node<T> current) {
+        if (current == null) {
+            return null;
+        }
+
+        T currentValue = current.value;
+        T nextMax = findMaxRecursive(current.next);
+
+        // Compare the current value with the maximum value in the rest of the list
+        if (nextMax == null || currentValue.compareTo(nextMax) > 0) {
+            return currentValue;
+        } else {
+            return nextMax;
+        }
+    }
+
+
 
     // Displays the linked list
     public void display(){

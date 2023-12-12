@@ -134,7 +134,11 @@ public class BinarySearchTree<T extends Comparable> {
         }
         return null;
     }
+    public boolean isLeaf(T val){
+        TNode<T> current=findNode(val);
+        return (current.left==null && current.right==null);
 
+    }
 
 }
 

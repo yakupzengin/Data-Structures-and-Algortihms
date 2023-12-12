@@ -53,38 +53,39 @@ public class BinarySearchTree<T extends Comparable> {
     }
 
     // Search for a value in the binary search tree
-    public boolean search(T val){
-        return search(root,val);
+    public boolean search(T val) {
+        return search(root, val);
     }
 
     // Helper method for searching a value in the binary search tree
-    public boolean search(TNode<T> root, T val){
-        if (root == null){
+    public boolean search(TNode<T> root, T val) {
+        if (root == null) {
             return false;
         }
-        if (root.value.compareTo(val) ==0){
+        if (root.value.compareTo(val) == 0) {
             return true;
-        } else if (root.value.compareTo(val) <0) {
-            return search(root.right,val);
-        } else{
-            return search(root.left,val);
+        } else if (root.value.compareTo(val) < 0) {
+            return search(root.right, val);
+        } else {
+            return search(root.left, val);
         }
     }
-    public TNode<T> findNode(T val ){
-        return findNode(root,val);
+
+    public TNode<T> findNode(T val) {
+        return findNode(root, val);
     }
-    public TNode<T> findNode(TNode<T> tempRoot, T val){
-        if (tempRoot == null){
+
+    public TNode<T> findNode(TNode<T> tempRoot, T val) {
+        if (tempRoot == null) {
             return null;
-        }
-        else if(val.compareTo(tempRoot.value) == -1){
-            return findNode(tempRoot.left,val);
-        }else if(val.compareTo(tempRoot.value) == 1){
-            return findNode(tempRoot.right,val);
-        }
-        else
+        } else if (val.compareTo(tempRoot.value) == -1) {
+            return findNode(tempRoot.left, val);
+        } else if (val.compareTo(tempRoot.value) == 1) {
+            return findNode(tempRoot.right, val);
+        } else
             return tempRoot;
     }
+
     public TNode<T> findParent(T val) {
         if (search(val) == false || root.value.compareTo(val) == 0)
             return null;
@@ -100,6 +101,40 @@ public class BinarySearchTree<T extends Comparable> {
             return parent;
         }
     }
+    public TNode<T> inorderSuccessor(T val){
+        // check the current's value. İf there is no val , current = null , or current is gonna be value.
+        TNode<T> current = findNode(val);
+        if (current == null)
+            return null;
+        else if (current.right !=null) {
+            TNode<T> iterator = current.right;
+            while(iterator.left != null){
+                iterator=iterator.left;
+            }
+            return iterator;
+        } else if (current == root && root.right == null) {
+            return null;
+        } else if (current.right == null) {
+            TNode<T> parent = findParent(val);
+            if (parent.left == current){
+                return parent;
+            }else{
+                TNode<T> grandParent = findParent(parent.value);
+                while(grandParent != null && grandParent.left!=parent){
+                    parent = grandParent;
+                    grandParent = findParent(parent.value);
+                }
+                if(grandParent == null)
+                    return null;
+                else {
+                    return grandParent;
+
+                }
+            }
+        }
+        return null;
+    }
 
 
 }
+

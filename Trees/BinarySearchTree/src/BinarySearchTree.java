@@ -140,5 +140,35 @@ public class BinarySearchTree<T extends Comparable> {
 
     }
 
+    public void delete( T val){
+        if (isLeaf(val)){
+            TNode<T> parent =findParent(val);
+            if(parent.left.value.compareTo(val)==0)
+                parent.left=null;
+            else parent.right=null;
+
+        }else{
+            TNode<T> current=findNode(val);
+            TNode<T> parent=findParent(val);
+            if(current.left==null && current.right!=null)
+            {
+                if(parent.left==current)
+                    parent.left=current.right;
+                else
+                    parent.right=current.right;
+            }else if (current.right==null && current.left!=null)
+            {
+                if(parent.left==current)
+                    parent.left=current.left;
+                else
+                    parent.right=current.left;
+            }else{//means it has two children
+                TNode<T> inorder=inorderSuccessor(val);
+                delete(inorder.value);
+                current.value=inorder.value;
+
+            }
+        }
+    }
 }
 

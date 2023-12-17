@@ -1,6 +1,16 @@
 public class BinarySearchTree<T extends Comparable> {
     private TNode<T> root;
-
+    public int findHeight(){
+        return findHeight(root);
+    }
+    public int findHeight(TNode<T> currentRoot){
+        if (currentRoot !=null){
+            int left = findHeight(currentRoot.left);
+            int right = findHeight(currentRoot.right);
+            return ( left > right ? left+1 : right+1);
+        }
+        return 0;
+    }
     public void insert(T val) {
         TNode<T> newNode = new TNode<>(val);
 
@@ -85,6 +95,7 @@ public class BinarySearchTree<T extends Comparable> {
         } else
             return tempRoot;
     }
+
 
     public TNode<T> findParent(T val) {
         if (search(val) == false || root.value.compareTo(val) == 0)

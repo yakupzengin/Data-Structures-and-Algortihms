@@ -70,5 +70,18 @@ public class Graph <T extends Comparable>{
         return count;
     }
 
+    public void display(){
+        Vertex<T> iterator = head;
+        while (iterator !=null){
+            System.out.print(iterator.id + "-->");
+            Edge<T> iteratorEdge = iterator.edgeLink;
+            while(iteratorEdge != null){
+                System.out.print(iteratorEdge.vertexId+ " ");
+                iteratorEdge = iteratorEdge.nextEdge;
+            }
+            System.out.println();
+            iterator = iterator.nextVertex;
+        }
 
+    }
 }

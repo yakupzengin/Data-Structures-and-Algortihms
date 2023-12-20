@@ -54,7 +54,21 @@ public class Graph <T extends Comparable>{
         }
         return count;
     }
-
+    public int inDegree(T id){
+        int count = 0;
+        Vertex<T> iteratorVertex = head;
+        while(iteratorVertex != null){
+            Edge<T> iteratorEdge = iteratorVertex.edgeLink;
+            while(iteratorEdge != null){
+                if(iteratorEdge.vertexId.compareTo(id) == 0){
+                    count++;
+                }
+                iteratorEdge = iteratorEdge.nextEdge;
+            }
+            iteratorVertex = iteratorVertex.nextVertex;
+        }
+        return count;
+    }
 
 
 }

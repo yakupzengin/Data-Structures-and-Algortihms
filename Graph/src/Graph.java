@@ -42,7 +42,18 @@ public class Graph <T extends Comparable>{
             }
         }
     }
+    public int outDegree(T id){
+        Vertex<T> current=findVertex(id);
+        int count=0;
+        Edge<T> iteratorEdge=current.edgeLink;
+        while(iteratorEdge!=null)
+        {
+            iteratorEdge=iteratorEdge.nextEdge;
+            count++;
 
+        }
+        return count;
+    }
 
 
 

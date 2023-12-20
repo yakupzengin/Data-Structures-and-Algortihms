@@ -26,7 +26,22 @@ public class Graph <T extends Comparable>{
             iterator.nextVertex =newVertex;
         }
     }
+    public void addEdge(T startId, T endId){
+        Vertex<T> current = findVertex(startId);
+        if (current == null)
+            System.out.println("No Vertex exist with this id.");
+        else{
+            Edge<T> iterator = current.edgeLink;
+            if (iterator == null){
+                current.edgeLink=new Edge<>(endId);
+            }else{
+                while(iterator.nextEdge != null)
+                    iterator = iterator.nextEdge;
+                iterator.nextEdge = new Edge<>(endId);
 
+            }
+        }
+    }
 
 
 

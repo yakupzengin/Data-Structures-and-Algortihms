@@ -16,5 +16,8 @@ public class Test {
         System.out.println(binarySearchTree.search(16));
         System.out.println(binarySearchTree.search(101));
         System.out.println(binarySearchTree.findHeight());
+        System.out.println("**");
+        binarySearchTree.swapValues();
+        binarySearchTree.inOrder();
     }
 }

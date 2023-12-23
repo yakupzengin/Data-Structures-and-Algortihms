@@ -181,5 +181,26 @@ public class BinarySearchTree<T extends Comparable> {
             }
         }
     }
+    public void swapValues(){
+        if (root == null){
+            return;
+        }
+        TNode<T> iterator = root;
+        TNode<T> iterator2 = root;
+        TNode<T> smallest = root;
+        TNode<T> largest = root;
+        while(iterator !=null){
+            smallest = iterator;
+            iterator = iterator.left;
+        }
+        while(iterator2 !=null){
+            largest = iterator2;
+            iterator2 = iterator2.right;
+        }
+        T temp = smallest.value;
+        smallest.value = largest.value;
+        largest.value = temp;
+
+    }
 }
 

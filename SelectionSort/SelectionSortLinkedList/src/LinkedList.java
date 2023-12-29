@@ -1,9 +1,6 @@
 public class LinkedList<T extends Comparable> {
     private Node<T> head;
 
-    public Node<T> getHead(){
-        return head;
-    }
     // Creates a new node with the given value
     public Node<T> createNode(T val){
         return new Node<T>(val);
@@ -14,62 +11,6 @@ public class LinkedList<T extends Comparable> {
         Node<T> newNode = createNode(val);
         newNode.next = head;
         head = newNode;
-    }
-
-    public Node<T> findMinNode(Node<T> startingPoint){
-        Node<T> iterator = startingPoint;
-        Node<T> minNode = startingPoint;
-        while(iterator != null){
-            if (minNode.value.compareTo(iterator.value) >0){
-                minNode = iterator;
-            }
-            iterator = iterator.next;
-        }
-        return minNode;
-    }
-    public void selectionSort(){
-        Node<T > iterator = head;
-        if (head == null){
-            return;
-        }
-        while(iterator.next != null){
-            Node<T> minNode = findMinNode(iterator);
-            T temp = iterator.value;
-            iterator.value = minNode.value;
-            minNode.value = temp;
-            iterator = iterator.next;
-        }
-    }
-    public void insertionSort() {
-        if (head == null || head.next == null) {
-            // No need to sort if the list has 0 or 1 element
-            return;
-        }
-
-        Node<T> sorted = null; // Head of the sorted list
-
-        Node<T> current = head;
-        while (current != null) {
-            Node<T> next = current.next;
-
-            // Insert the current node into the sorted list
-            if (sorted == null || sorted.value.compareTo(current.value) > 0) {
-                current.next = sorted;
-                sorted = current;
-            } else {
-                Node<T> temp = sorted;
-                while (temp.next != null && temp.next.value.compareTo(current.value) < 0) {
-                    temp = temp.next;
-                }
-                current.next = temp.next;
-                temp.next = current;
-            }
-
-            current = next;
-        }
-
-        // Update the head of the linked list to the sorted list
-        head = sorted;
     }
 
     // Inserts a node containing the given value at the end of the list
@@ -188,7 +129,13 @@ public class LinkedList<T extends Comparable> {
 
         return findMaxRecursive2(current.next,currentMax);
     }
+
+
+
+
+
     // Finds the minimum value in the list
+
     public T findMin() {
         if (head == null)
             return null;

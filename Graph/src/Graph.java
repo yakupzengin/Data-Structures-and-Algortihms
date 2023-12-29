@@ -1,6 +1,24 @@
 public class Graph <T extends Comparable>{
     Vertex<T> head;
 
+    public boolean hasPathLengthTwo(T startId, T endId) {
+        return true;
+    }
+
+    public int findTotalWeight(){
+        int totalWeight=0;
+        Vertex<T> iteratorVertex=head;
+
+        while( iteratorVertex != null){
+            Edge<T> iteratorEdge = iteratorVertex.edgeLink;
+            while(iteratorEdge !=null){
+                totalWeight += iteratorEdge.weight;
+                iteratorEdge = iteratorEdge.nextEdge;
+            }
+            iteratorVertex = iteratorVertex.nextVertex;
+        }
+        return totalWeight;
+    }
     public Vertex<T> findVertex(T id){
         Vertex<T> iterator = head;
         while(iterator !=null){
@@ -26,25 +44,41 @@ public class Graph <T extends Comparable>{
             iterator.nextVertex =newVertex;
         }
     }
-    public void addEdge(T startId, T endId){
-        Vertex<T> current = findVertex(startId);
-        if (current == null)
-            System.out.println("No Vertex exist with this id.");
+    public void addEdge(T startingId, T endId, int w){
+        Vertex<T> current=findVertex(startingId);
+        Edge<T> newEdge=new Edge<>(endId, w);
+        Edge<T> iteratorEdge=current.edgeLink;
+        if(iteratorEdge==null)
+            current.edgeLink=newEdge;
         else{
-            Edge<T> iterator = current.edgeLink;
-            if (iterator == null){
-                current.edgeLink=new Edge<>(endId);
-            }else{
-                while(iterator.nextEdge != null)
-                    iterator = iterator.nextEdge;
-                iterator.nextEdge = new Edge<>(endId);
-
-            }
+            while(iteratorEdge.nextEdge!=null)
+                iteratorEdge=iteratorEdge.nextEdge;
+            iteratorEdge.nextEdge=newEdge;
         }
     }
+//    public void addEdge(T startId, T endId){
+//        Vertex<T> current = findVertex(startId);
+//        if (current == null)
+//            System.out.println("No Vertex exist with this id.");
+//        else{
+//            Edge<T> iterator = current.edgeLink;
+//            if (iterator == null){
+//                current.edgeLink=new Edge<>(endId);
+//            }else{
+//                while(iterator.nextEdge != null)
+//                    iterator = iterator.nextEdge;
+//                iterator.nextEdge = new Edge<>(endId);
+//
+//            }
+//        }
+//    }
+
     public int outDegree(T id){
-        Vertex<T> current=findVertex(id);
         int count=0;
+        Vertex<T> current=findVertex(id);
+        if (current==null){
+            return count;
+        }
         Edge<T> iteratorEdge=current.edgeLink;
         while(iteratorEdge!=null)
         {
@@ -69,11 +103,10 @@ public class Graph <T extends Comparable>{
         }
         return count;
     }
-
     public void display(){
         Vertex<T> iterator = head;
         while (iterator !=null){
-            System.out.print(iterator.id + "-->");
+            System.out.print(iterator.id + " ");
             Edge<T> iteratorEdge = iterator.edgeLink;
             while(iteratorEdge != null){
                 System.out.print(iteratorEdge.vertexId+ " ");
@@ -82,6 +115,5 @@ public class Graph <T extends Comparable>{
             System.out.println();
             iterator = iterator.nextVertex;
         }
-
     }
 }

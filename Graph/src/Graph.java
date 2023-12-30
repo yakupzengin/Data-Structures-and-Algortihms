@@ -16,36 +16,19 @@ public class Graph <T extends Comparable> {
 
     public boolean hasPathLengthTwo(T startId, T endId) {
         Vertex<T> startVertex = findVertex(startId);
-        Vertex<T> endVertex = findVertex(endId);
-
-        if (startVertex == null || endVertex == null) {
-            System.out.println("One or both vertices do not exist.");
+        if (startVertex == null){
+            System.out.println("There is no Start vertex with startID");
             return false;
         }
-
-        // Check if there is a direct edge from startVertex to endVertex
-        Edge<T> directEdge = startVertex.edgeLink;
-        while (directEdge != null) {
-            if (directEdge.vertexId.compareTo(endId) == 0) {
-                return true; // Path of length 1 exists
+        Edge<T> iteratorEdge = startVertex.edgeLink;
+        int count =1;
+        while(count <3 && iteratorEdge != null){
+            System.out.println("count "+ count + " - " + "iteratorEDge.vertexID" + iteratorEdge.vertexId);
+            if (iteratorEdge.vertexId.compareTo(endId) ==0 && count==2){
+                return true;
             }
-            directEdge = directEdge.nextEdge;
-        }
-
-        // Check if there is a common neighbor vertex between startVertex and endVertex
-        Edge<T> startEdge = startVertex.edgeLink;
-        while (startEdge != null) {
-            Vertex<T> commonNeighbor = findVertex(startEdge.vertexId);
-            if (commonNeighbor != null) {
-                Edge<T> commonNeighborEdge = commonNeighbor.edgeLink;
-                while (commonNeighborEdge != null) {
-                    if (commonNeighborEdge.vertexId.compareTo(endId) == 0) {
-                        return true; // Path of length 2 exists
-                    }
-                    commonNeighborEdge = commonNeighborEdge.nextEdge;
-                }
-            }
-            startEdge = startEdge.nextEdge;
+            iteratorEdge = iteratorEdge.nextEdge;
+            count++;
         }
 
         return false; // No path of length 2 found

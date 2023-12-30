@@ -16,14 +16,15 @@ public class Test {
         myGraph.addEdge(4,1, 5);
         myGraph.addEdge(4,9, 1);
         myGraph.addEdge(4,12, 6);
-        myGraph.addEdge(5,10,3);
+        myGraph.addEdge(1,10,3);
         int findTotalWeight = myGraph.findTotalWeight();
         System.out.println("findTotalWeight = "+findTotalWeight);
         System.out.println(myGraph.hasPathLengthTwo(2,7));
-        System.out.println(myGraph.outDegree(1));
-        System.out.println(myGraph.inDegree(5));
+        System.out.println("outDegree "+myGraph.outDegree(1));
+        System.out.println("inDegree "+ myGraph.inDegree(5));
         System.out.println("display method : ");
         myGraph.display();
-
+        System.out.println("*");
+        System.out.println(myGraph.hasPathLengthTwo(4,1));
     }
 }

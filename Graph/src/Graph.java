@@ -1,8 +1,41 @@
-public class Graph <T extends Comparable>{
+public class Graph <T extends Comparable> {
     Vertex<T> head;
 
     public boolean hasPathLengthTwo(T startId, T endId) {
-        return true;
+        Vertex<T> startVertex = findVertex(startId);
+        Vertex<T> endVertex = findVertex(endId);
+
+        if (startVertex == null || endVertex == null) {
+            System.out.println("One or both vertices do not exist.");
+            return false;
+        }
+
+        // Check if there is a direct edge from startVertex to endVertex
+        Edge<T> directEdge = startVertex.edgeLink;
+        while (directEdge != null) {
+            if (directEdge.vertexId.compareTo(endId) == 0) {
+                return true; // Path of length 1 exists
+            }
+            directEdge = directEdge.nextEdge;
+        }
+
+        // Check if there is a common neighbor vertex between startVertex and endVertex
+        Edge<T> startEdge = startVertex.edgeLink;
+        while (startEdge != null) {
+            Vertex<T> commonNeighbor = findVertex(startEdge.vertexId);
+            if (commonNeighbor != null) {
+                Edge<T> commonNeighborEdge = commonNeighbor.edgeLink;
+                while (commonNeighborEdge != null) {
+                    if (commonNeighborEdge.vertexId.compareTo(endId) == 0) {
+                        return true; // Path of length 2 exists
+                    }
+                    commonNeighborEdge = commonNeighborEdge.nextEdge;
+                }
+            }
+            startEdge = startEdge.nextEdge;
+        }
+
+        return false; // No path of length 2 found
     }
 
     public int findTotalWeight(){
@@ -47,6 +80,9 @@ public class Graph <T extends Comparable>{
     public void addEdge(T startingId, T endId, int w){
         Vertex<T> current=findVertex(startingId);
         Edge<T> newEdge=new Edge<>(endId, w);
+        if (current== null){
+            return;
+        }
         Edge<T> iteratorEdge=current.edgeLink;
         if(iteratorEdge==null)
             current.edgeLink=newEdge;

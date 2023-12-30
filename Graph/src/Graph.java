@@ -1,6 +1,19 @@
 public class Graph <T extends Comparable> {
     Vertex<T> head;
 
+    public void findNeighbor(T ıd){
+        Vertex<T> current = findVertex(ıd);
+        if (current == null){
+            return;
+        }
+        Edge<T> iteratorEdge = current.edgeLink;
+        while(iteratorEdge != null){
+            System.out.print(iteratorEdge.vertexId + " ");
+            iteratorEdge = iteratorEdge.nextEdge;
+        }
+        System.out.println();
+    }
+
     public boolean hasPathLengthTwo(T startId, T endId) {
         Vertex<T> startVertex = findVertex(startId);
         Vertex<T> endVertex = findVertex(endId);

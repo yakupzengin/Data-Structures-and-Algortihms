@@ -220,7 +220,7 @@ public class LinkedList<T extends Comparable> {
             newNode.next = iterator.next;
             iterator.next = newNode;
         }
-    }
+    }   
 
     // Deletes all nodes with the given value
     public void deleteAll(T val){

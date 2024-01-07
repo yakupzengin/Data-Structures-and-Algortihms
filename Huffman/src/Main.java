@@ -23,7 +23,7 @@ public class Main {
         huffmanTree.createHuffmanTree(linkedList);
         HuffmanNode root = linkedList.head.node;
         System.out.println("root.frequency = " + root.frequency);
-
+        System.out.println("root = " + root.value);
         // Step 4: Display Huffman codes
         Map<String, String> huffmanCodes = huffmanTree.getHuffmanCodes(root, "");
         for (String key : huffmanCodes.keySet()) {
@@ -38,7 +38,6 @@ public class Main {
         // Step 6: Decode encoded text
         String decodedText = huffmanTree.decode(encodedText, root);
         System.out.println("Decoded Text: " + decodedText);
-
 
     }
 }

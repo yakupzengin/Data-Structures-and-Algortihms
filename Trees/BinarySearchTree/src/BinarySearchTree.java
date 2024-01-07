@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class BinarySearchTree<T extends Comparable> {
     private TNode<T> root;
     public int findHeight(){
@@ -11,6 +13,44 @@ public class BinarySearchTree<T extends Comparable> {
         }
         return 0;
     }
+
+    // None Recursively
+    public int findHeightNR() {
+        TNode<T> iterator = root;
+
+        if (iterator == null) {
+            return 0;
+        }
+
+        int leftSide = 0;
+        while (iterator != null) {
+            leftSide++;
+            if (iterator.left != null) {
+                iterator = iterator.left;
+            } else if (iterator.right != null) {
+                iterator = iterator.right;
+            } else {
+                break;
+            }
+        }
+
+        int rightSide = 0;
+        iterator = root; // Reset iterator to the root for right side traversal
+        while (iterator != null) {
+            rightSide++;
+            if (iterator.right != null) {
+                iterator = iterator.right;
+            } else if (iterator.left != null) {
+                iterator = iterator.left;
+            } else {
+                break;
+            }
+        }
+
+        return Math.max(leftSide, rightSide);
+    }
+
+
     public void insert(T val) {
         TNode<T> newNode = new TNode<>(val);
 
@@ -53,12 +93,73 @@ public class BinarySearchTree<T extends Comparable> {
         inOrder(root);
     }
 
-    public void inOrder(TNode<T> root) {
+    private void inOrder(TNode<T> root) {
         // Perform in-order traversal and print the nodes
         if (root != null) {
             inOrder(root.left);
             System.out.println(root);
             inOrder(root.right);
+        }
+    }
+    public void postOrder(){
+        postOrder(root);
+    }
+    private void postOrder(TNode<T> root){
+        if (root != null){
+            postOrder(root.left);
+            postOrder(root.right);
+            System.out.println(root);
+        }
+    }
+
+    public void inOrderNR() {
+        if (root == null) {
+            return;
+        }
+
+        Stack<TNode<T>> stack = new Stack<>();
+        TNode<T> current = root;
+
+        while (current != null || !stack.isEmpty()) {
+            while (current != null) {
+                stack.push(current);
+                current = current.left;
+            }
+
+            current = stack.pop();
+            System.out.println(current);
+
+            current = current.right;
+        }
+    }
+
+
+    public void postOrderNR() {
+        if (root == null) {
+            return;
+        }
+
+        Stack<TNode<T>> stack = new Stack<>();
+        TNode<T> iterator = root;
+        TNode<T> lastVisited = null;
+
+        while (iterator != null || !stack.isEmpty()) {
+            if (iterator != null) {
+                stack.push(iterator);
+                iterator = iterator.left;
+            } else {
+                TNode<T> peekNode = stack.peek();
+                if (peekNode.right != null && lastVisited != peekNode.right) {
+                    // Move to the right subtree if exists and not visited yet
+                    iterator = peekNode.right;
+                } else {
+                    // Visit the iterator node
+                    System.out.println(peekNode);
+
+                    // Mark the iterator node as last visited
+                    lastVisited = stack.pop();
+                }
+            }
         }
     }
 

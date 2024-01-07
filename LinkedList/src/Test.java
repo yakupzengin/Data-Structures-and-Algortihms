@@ -56,7 +56,7 @@ public class Test {
         System.out.println("********");
         System.out.println(linkedList.findMinNode(linkedList.getHead()));
         System.out.println("*");
-        linkedList.insertionSort();
+        linkedList.selectionSort();
         linkedList.display();
     }
 }

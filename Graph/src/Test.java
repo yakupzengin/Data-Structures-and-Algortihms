@@ -20,11 +20,13 @@ public class Test {
         int findTotalWeight = myGraph.findTotalWeight();
         System.out.println("findTotalWeight = "+findTotalWeight);
         System.out.println(myGraph.hasPathLengthTwo(2,7));
-        System.out.println("outDegree "+myGraph.outDegree(1));
-        System.out.println("inDegree "+ myGraph.inDegree(5));
+        System.out.println("outDegree 1 "  +myGraph.outDegree(1));
+        System.out.println("inDegree 5 "+ myGraph.inDegree(7));
         System.out.println("display method : ");
         myGraph.display();
         System.out.println("*");
-        System.out.println(myGraph.hasPathLengthTwo(4,1));
+        System.out.println(myGraph.hasPathLengthTwo(4,9));
+        myGraph.findNeighbor(4);
+        System.out.println(myGraph.hasPathLengthTwo(2,7));
     }
 }

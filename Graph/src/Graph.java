@@ -1,4 +1,4 @@
-public class Graph <T extends Comparable> {
+public class    Graph <T extends Comparable> {
     Vertex<T> head;
 
     public void findNeighbor(T ıd){
@@ -21,14 +21,14 @@ public class Graph <T extends Comparable> {
             return false;
         }
         Edge<T> iteratorEdge = startVertex.edgeLink;
-        int count =1;
-        while(count <3 && iteratorEdge != null){
+        int count =0;
+        while(count <=2  && iteratorEdge != null){
+            count++;
             System.out.println("count "+ count + " - " + "iteratorEDge.vertexID" + iteratorEdge.vertexId);
             if (iteratorEdge.vertexId.compareTo(endId) ==0 && count==2){
                 return true;
             }
             iteratorEdge = iteratorEdge.nextEdge;
-            count++;
         }
 
         return false; // No path of length 2 found

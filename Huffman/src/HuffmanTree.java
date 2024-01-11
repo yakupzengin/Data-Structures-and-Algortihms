@@ -41,6 +41,21 @@ class HuffmanTree {
         }
         return frequencies;
     }
+    /*
+    *
+    * public void createHuffmanTree(LinkedList list){
+        * while( list.count() > 1 ) {
+            * HuffmanNode leftN = list.delete();
+            * HuffmanNode rightN = list.delete();
+            * HuffmanNode mergeNode = new HuffmanNode( leftN.frequency + right.frequency , null);
+            * mergeNode.left = leftN;
+            * mergeNode.right = rightN;
+            * list.insertSorted(mergeNode);
+        * }
+        * root = list.delete(); // The last remaining node i    n the list ist the root of the Huffman Tree.
+        *
+    *
+    * */
     public void createHuffmanTree(LinkedListHuffman list) {
         while (list.head.next != null) {
             HuffmanNode left = list.head.node;

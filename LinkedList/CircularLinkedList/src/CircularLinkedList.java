@@ -16,6 +16,32 @@ public class CircularLinkedList<T extends Comparable> {
             newNode.next = head;
         }
     }
+    private Node<T> findMinNode(Node<T> startingPoint){
+        Node<T> iterator = startingPoint.next;
+        Node<T> minNode = startingPoint;
+
+        while(iterator != head){
+            if (iterator.value.compareTo(minNode.value) < 0){
+                minNode = iterator;
+            }
+            iterator = iterator.next;
+        }
+        return minNode;
+    }
+
+    public void selectionSort(){
+        Node<T> iterator = head;
+        if (iterator== null){
+            return;
+        }
+        while(iterator != null && iterator.next != head){
+            Node<T> minNode = findMinNode(iterator);
+            T temp = iterator.value;
+            iterator.value = minNode.value;
+            minNode.value = temp;
+            iterator = iterator.next;
+        }
+    }
 
     // Inserts a new node at the front of the circular linked list
     public void insertToFront(T val) {

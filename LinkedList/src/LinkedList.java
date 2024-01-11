@@ -45,13 +45,10 @@ public class LinkedList<T extends Comparable> {
             // No need to sort if the list has 0 or 1 element
             return;
         }
-
         Node<T> sorted = null; // Head of the sorted list
-
         Node<T> current = head;
         while (current != null) {
             Node<T> next = current.next;
-
             // Insert the current node into the sorted list
             if (sorted == null || sorted.value.compareTo(current.value) > 0) {
                 current.next = sorted;
@@ -64,14 +61,11 @@ public class LinkedList<T extends Comparable> {
                 current.next = temp.next;
                 temp.next = current;
             }
-
             current = next;
         }
-
         // Update the head of the linked list to the sorted list
         head = sorted;
     }
-
     // Inserts a node containing the given value at the end of the list
     public void insertToEnd(T val){
         Node<T> newNode = createNode(val);

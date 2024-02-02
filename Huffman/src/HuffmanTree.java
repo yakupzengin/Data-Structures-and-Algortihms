@@ -54,7 +54,6 @@ class HuffmanTree {
         * }
         * root = list.delete(); // The last remaining node i    n the list ist the root of the Huffman Tree.
         *
-    *
     * */
     public void createHuffmanTree(LinkedListHuffman list) {
         while (list.head.next != null) {
